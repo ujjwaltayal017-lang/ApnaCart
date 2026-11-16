@@ -1,39 +1,64 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { authDataContext } from './AuthContext';
-import axios from "axios"
+
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useState
+} from "react";
+
+import { authDataContext } from "./AuthContext";
+import axios from "axios";
 
 export const adminDataContext = createContext();
 
 function AdminContext({ children }) {
-  let [adminData, setAdminData] = useState(null);
-  let { serverUrl } = useContext(authDataContext);
 
-  const getAdmin = async () => {
-    try {
-      let result = await axios.get(`${serverUrl}/api/user/getadmin`, { withCredentials: true })
+    const [adminData, setAdminData] = useState(null);
+    const [checkingAdmin, setCheckingAdmin] = useState(true);
 
-      setAdminData(result.data);
-    } catch (err) {
-      setAdminData(null)
-      console.log(err);
-    }
-  }
+    const { serverUrl } = useContext(authDataContext);
 
-  useEffect(()=>{
-    getAdmin();
-  },[])
+    const getAdmin = async () => {
+        try {
+            const result = await axios.get(
+                `${serverUrl}/api/user/getadmin`,
+                { withCredentials: true }
+            );
 
-  let value = {
-    adminData, setAdminData, getAdmin
-  }
+            setAdminData(result.data);
+            return true;
 
-  return (
-    <div>
-      <adminDataContext.Provider value={value}>
-        {children}
-      </adminDataContext.Provider>
-    </div>
-  )
+        } catch (err) {
+            setAdminData(null);
+
+            console.log(
+                "Get Admin Error:",
+                err.response?.data || err.message
+            );
+
+            return false;
+
+        } finally {
+            setCheckingAdmin(false);
+        }
+    };
+
+    useEffect(() => {
+        getAdmin();
+    }, []);
+
+    const value = {
+        adminData,
+        setAdminData,
+        getAdmin,
+        checkingAdmin
+    };
+
+    return (
+        <adminDataContext.Provider value={value}>
+            {children}
+        </adminDataContext.Provider>
+    );
 }
 
-export default AdminContext
+export default AdminContext;
