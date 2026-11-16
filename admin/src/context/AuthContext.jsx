@@ -3,7 +3,7 @@ export const authDataContext = createContext();
 
 
 function AuthContext({children}) {
-    let serverUrl = "http://localhost:8000"
+    let serverUrl = "https://apnacart-backend-gx24.onrender.com"
 
     let value = {
         serverUrl
