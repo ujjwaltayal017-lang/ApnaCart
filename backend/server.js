@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["https://apnacart-frontend.onrender.com", "http://localhost:5174"],
+    origin: ["https://apnacart-frontend.onrender.com", "https://apnacart-admin.onrender.com"],
     credentials: true,
   })
 );
