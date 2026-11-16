@@ -1,17 +1,4 @@
 import "dotenv/config";
-// import dotenv from "dotenv";
-// dotenv.config();
-// import dotenv from "dotenv";
-// import path from "path";
-// import { fileURLToPath } from "url";
-
-// const __filename = fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
-
-// dotenv.config({
-//     path: path.join(__dirname, ".env")
-// });
-
 
 import express from "express";
 import connectDB from "./db/db.js";
@@ -33,7 +20,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["https://apnacart-frontend.onrender.com", "http://localhost:5174"],
     credentials: true,
   })
 );
