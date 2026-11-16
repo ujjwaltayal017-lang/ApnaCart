@@ -1,0 +1,14 @@
+import express from "express";
+import { addToCart, getUserCart, updateCart } from "../controllers/cartController.js";
+import isAuth from "../middleware/isAuth.js"; // Adjust filename to your actual auth middleware
+
+const cartRoutes = express.Router();
+
+// Allow both GET and POST for /get to match frontend
+cartRoutes.get("/get", isAuth, getUserCart);
+cartRoutes.post("/get", isAuth, getUserCart);
+
+cartRoutes.post("/add", isAuth, addToCart);
+cartRoutes.post("/update", isAuth, updateCart);
+
+export default cartRoutes;
