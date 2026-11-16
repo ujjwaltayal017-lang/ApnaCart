@@ -26,8 +26,15 @@ export default function Login() {
         email,
         password
       }, { withCredentials: true });
-      await getAdmin()
-      navigate("/")
+      // await getAdmin()
+      // navigate("/")
+      const isAdmin = await getAdmin();
+
+        if (isAdmin) {
+          navigate("/");
+        } else {
+          console.log("Admin verification failed");
+        }
       
     } catch (err) {
       console.log(err);
