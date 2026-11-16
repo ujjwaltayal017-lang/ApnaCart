@@ -26,7 +26,7 @@ export default function Login() {
         email,
         password
       }, { withCredentials: true });
-      getAdmin()
+      await getAdmin()
       navigate("/")
       
     } catch (err) {
