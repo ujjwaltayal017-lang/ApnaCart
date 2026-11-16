@@ -22,7 +22,7 @@ export const getAdmin = async (req, res) => {
                 message: "Admin is not found"
             })
         }
-        return res.status(201).json({
+        return res.status(200).json({
             email: adminEmail,
             role: "admin"
         })
