@@ -26,7 +26,6 @@ export default function Login() {
         email,
         password
       }, { withCredentials: true });
-      console.log(result.data);
       getAdmin()
       navigate("/")
       

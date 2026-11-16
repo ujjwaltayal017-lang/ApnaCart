@@ -30,36 +30,12 @@ export default function Login() {
         email,
         password
       }, { withCredentials: true });
-      console.log(result.data);
       getCurrentUser()
       navigate("/")
     } catch (err) {
       console.log(err);
     }
   };
-
-  // "Continue with Google" button dabane par yeh function chalta hai
-  // const googleSignIn = async () => {
-  //   try {
-  //     const response = await signInWithPopup(auth, provider);
-
-  //     let user = response.user
-  //     let name = user.displayName
-  //     let email = user.email
-  //     let password = user.uid
-
-  //     const result = await axios.post(`${serverUrl}/api/auth/google-login`, {
-  //       name,
-  //       email,
-  //       password
-  //     }, { withCredentials: true });
-  //     getCurrentUser()
-  //     navigate("/")
-  //     console.log(result.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
 
   const googleSignIn = async () => {
     try {

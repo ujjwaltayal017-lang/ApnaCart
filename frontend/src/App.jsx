@@ -35,7 +35,7 @@ export default function App() {
 
         <Route path="/register" element={userData ? (<Navigate to={location.state?.from || "/"} />) : (<RegistrationPage />)} />
 
-        <Route path="/login" element={userData ? (<Navigate to={location.state?.from || "/"} />) : (<RegistrationPage />)} />
+        <Route path="/login" element={userData ? (<Navigate to={location.state?.from || "/"} />) : (<Login />)} />
 
         <Route path="/about" element={userData ? <About /> : <Navigate to="/login" state={{ from: location.pathname }} />} />
 
